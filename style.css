@@ -1,0 +1,147 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+body{
+    margin: auto;
+    width: 100vh;
+    height: 100vh;
+    display: grid;
+    text-align: center;
+    justify-content: center;
+    place-items: center;
+    background: linear-gradient(to right, #1CB5E0, #000046); 
+}
+.tablero {
+    width: 500px;
+    height: 500px;
+    display: grid;
+    grid-template-columns: repeat(8,1fr) 20px;
+    grid-template-rows: repeat(8,1fr) 20px;
+    background-color: #fff;
+    box-shadow: 2px 2px 2px #0000008d;
+    overflow: auto;
+    transition: all 500ms forwards;
+}
+.container-coordenada{
+    background: #b1aaa5de;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    place-items: center;
+    border-bottom: solid 1px rgba(0, 0, 0, 0.507);
+    border-right: solid 1px rgba(0, 0, 0, 0.507);
+
+}
+.coordenada{
+    color: #1c1c1c;
+    font-size: 18px;
+}
+.cuadradoDeLaEsquina{
+    background: #c5c2bfde;
+    border: solid 1px rgba(0, 0, 0, 0.507);
+}
+.casilla{
+    text-align: center;
+    font-size:40px;
+    transition: 0.2s ease-in-out;
+    user-select: none;
+    cursor: context-menu;
+    transition: all 300ms;
+}
+.dark-box{
+    background-color: #a5682a;
+}
+.casilla:focus{
+    background-color: #c7b52d;
+    border: 1px solid #0000000e;
+    transition: all 300ms;
+}
+.posibleMovement{
+    background-color: #c7b52d;
+    border: 1px solid #00000072;
+    transition: all 300ms;
+}
+.modal_background{
+    background: rgba(51, 51, 51, 0.318);
+    color: rgb(240, 239, 239);
+    width: 100%;
+    height: 100%;
+    display: none;
+    top: 0;
+    left: 0;
+    justify-content: center;
+    position: absolute;
+}
+.modal{
+    background: #2a2a2a;
+    padding: 15px;
+    margin: auto;
+    width: 80%;
+    height: min-content;
+    text-align: center;
+    transition: all 0.5s forwards;
+}
+.modal li{
+    font-size: 30px;
+    display: inline-block;
+    cursor: pointer;
+}
+.modal-jaque{
+    background: #2a2a2a;
+    padding: 15px;
+    margin: auto;
+    width: 50%;
+    min-width: min-content;
+    height: min-content;
+    text-align: center;
+}
+.mensaje-modal{
+    margin: 20px;
+    font-size: 30px;
+}
+.btn-play{
+    border: none;
+    outline: none;
+    padding: 8px 10px;
+    margin: auto;
+    margin-bottom: 8px;
+    transition: all 150ms;
+}
+.btn-play:active{
+    background: #c3c3c3;
+    font-size: 13px;
+}
+.rotar{
+    transition: all 500ms forwards;
+    transform: rotate(180deg);
+}
+.rotar .casilla, .rotar .container-coordenada{
+    transition: all 500ms forwards;
+    transform: rotate(180deg);
+}
+
+@keyframes aparecer {
+    0%{
+        display: flex;
+        opacity: 0;
+    }
+    100%{
+        display: flex;
+        opacity: 1;
+    }
+}
+
+@keyframes desaparecer {
+    0%{
+        display: flex;
+        opacity: 1;
+    }
+    100%{
+        display: none;
+        opacity: 0;
+    }
+}
+
