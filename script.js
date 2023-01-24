@@ -27,7 +27,12 @@ function onClickAll(element){
             focusAll();
             unDrawPosibleMovements();
             color = element.classList[0];
-            tablero.classList.add("rotar");
+            if (tablero.classList.contains('rotar')) {
+                tablero.classList.remove("rotar");
+            }else{
+                tablero.classList.add("rotar");
+            }
+            
         }
 
         if (isInCheck(changeColor(color))[0]) {
