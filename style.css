@@ -12,7 +12,6 @@ body{
     text-align: center;
     justify-content: center;
     place-items: center;
-    background: linear-gradient(to right, #1CB5E0, #000046); 
 }
 .tablero {
     width: 500px;
@@ -112,6 +111,12 @@ body{
 .btn-play:active{
     background: #c3c3c3;
     font-size: 13px;
+}
+.blancas{
+    background: linear-gradient(to right, #1ebfec, #010172); 
+}
+.negras{
+    background: linear-gradient(to right, #1aa6cd, #010148);
 }
 
 @keyframes aparecer {

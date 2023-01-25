@@ -21,12 +21,19 @@ function onClickAll(element){
         let color;
         if (element.classList.contains('posibleMovement')) { //si esta pintado
             let pTarget = document.getElementById('posFinal'); //Se obtiene un p oculto
-            let tablero = document.getElementById('tablero');
+            let body = document.getElementById('body');
             pTarget.innerHTML = element.id;
             move();
             focusAll();
             unDrawPosibleMovements();
             color = element.classList[0];
+            if (itsBlackTurn) {
+                body.classList.remove('blancas');
+                body.classList.add('negras');
+            }else{
+                body.classList.add('blancas');
+                body.classList.remove('negras');
+            }
         }
 
         if (isInCheck(changeColor(color))[0]) {
