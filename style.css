@@ -113,13 +113,6 @@ body{
     background: #c3c3c3;
     font-size: 13px;
 }
-.rotar{
-    transform: rotate(180deg);
-}
-.rotar .casilla, .rotar .container-coordenada{
-    transition: transform 0ms;
-    transform: scale(-1);
-}
 
 @keyframes aparecer {
     0%{

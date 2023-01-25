@@ -27,12 +27,6 @@ function onClickAll(element){
             focusAll();
             unDrawPosibleMovements();
             color = element.classList[0];
-            if (tablero.classList.contains('rotar')) {
-                tablero.classList.remove("rotar");
-            }else{
-                tablero.classList.add("rotar");
-            }
-            
         }
 
         if (isInCheck(changeColor(color))[0]) {
@@ -324,18 +318,14 @@ function movimientosPeon(element){
     }
     
     if (espacioDiagonalDer) {
-        if (espacioDiagonalDer.classList[0] != element.classList[0]) {
-            comer.push(espacioDiagonalDer.id);   
-        }
+        comer.push(espacioDiagonalDer.id);   
         if (espacioDiagonalDer.classList[0] == changeColor(element.classList[0])) {
         //si la diagonal derecha esta llena se puede ir a esa posición:
             movimientos.push(espacioDiagonalDer.id);
         }
     }
     if (espacioDiagonalIzq) {
-        if (espacioDiagonalIzq.classList[0] != element.classList[0]) {
-            comer.push(espacioDiagonalIzq.id);   
-        }
+        comer.push(espacioDiagonalIzq.id);   
         if (espacioDiagonalIzq.classList[0] == changeColor(element.classList[0])) {
         //si la diagonal izquierda esta llena se puede ir a esa posición:
             movimientos.push(espacioDiagonalIzq.id);
@@ -347,6 +337,7 @@ function movimientosCaballo(element){
     let fila = parseInt(element.id.split(',')[0]);
     let columna = parseInt(element.id.split(',')[1]);
     let movimientos = [];
+    let allMovimientos=[];
     let colorEnemigo = changeColor(element.classList[0]);
     //------------------------------------------------------//
     let a1 = fila+2;
@@ -362,13 +353,14 @@ function movimientosCaballo(element){
         let idDelObjeto = element.join(',')
         if(!isOut(element[0],element[1])){ //Ningun numero mayor que 8
             let casilla = document.getElementById(idDelObjeto);
+            allMovimientos.push(idDelObjeto);
             if (casilla.classList.contains(colorEnemigo) || casilla.innerHTML=='') { 
                 //No tenga el mismo color
                 movimientos.push(idDelObjeto);
             }   
         }
     })
-    return movimientos;
+    return [movimientos,allMovimientos];
 }
 function movimientosAlfil(element){
     let fila = parseInt(element.id.split(',')[0]);
@@ -665,7 +657,7 @@ function movimientos(element){
     if (tipo=='peon') {
         return movimientosPeon(element)[0];
     }else if (tipo=='caballo') {
-        return movimientosCaballo(element);
+        return movimientosCaballo(element)[1];
     }else if(tipo=='alfil'){
         return movimientosAlfil(element);
     }else if (tipo == 'torre') {
@@ -690,7 +682,7 @@ function movimientosValidos(element){
         return movimientosPeon(element)[0];
     }
     if (tipo=='caballo') {
-        return movimientosCaballo(element);
+        return movimientosCaballo(element)[0];
     }
     if(tipo=='alfil'){
         return movimientosAlfil(element);
@@ -713,7 +705,7 @@ function casillaProtegida(id,colorQueProtege){// Puede que ya funcione
         if (casilla.classList[1]=='peon') {
             return movimientosPeon(casilla)[1].includes(element.id);
         }else if (casilla.classList[1]=='caballo') {
-            return movimientosCaballo(casilla).includes(element.id);
+            return movimientosCaballo(casilla)[1].includes(element.id);
         }else if (casilla.classList[1]=='rey') {
             return movimientosRey(casilla).includes(element.id);
         }else{
@@ -739,6 +731,9 @@ function makeChessSelf(element){
     for (const casilla of casillasAmenaza) {
         if (element.classList[1] != 'rey') {
             if (beams(casilla,getKing(color))[0].length == 1 && beams(casilla,getKing(color))[0][0]==(element.id)) { //casillas que protejen al rey no se pueden mover
+                if (movimientos(element).includes(casilla.id)) {
+                    return[true,[casilla.id]];
+                }
                 return [true,[]];
             }
         }
