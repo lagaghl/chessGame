@@ -14,8 +14,8 @@ body{
     place-items: center;
 }
 .tablero {
-    width: 500px;
-    height: 500px;
+    width: 600px;
+    height: 600px;
     display: grid;
     grid-template-columns: repeat(8,1fr) 20px;
     grid-template-rows: repeat(8,1fr) 20px;
@@ -30,11 +30,10 @@ body{
     place-items: center;
     border-bottom: solid 1px rgba(0, 0, 0, 0.507);
     border-right: solid 1px rgba(0, 0, 0, 0.507);
-
 }
 .coordenada{
     color: #1c1c1c;
-    font-size: 18px;
+    font-size: 20px;
 }
 .cuadradoDeLaEsquina{
     background: #c5c2bfde;
@@ -42,7 +41,7 @@ body{
 }
 .casilla{
     text-align: center;
-    font-size:40px;
+    font-size: 48px;
     transition: 0.2s ease-in-out;
     user-select: none;
     transition: all 300ms;
